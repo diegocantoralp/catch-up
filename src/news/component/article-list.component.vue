@@ -1,10 +1,12 @@
 <script>
+
+
 import ArticleCard from "./article-card.component.vue";
 
 export default {
-  name: 'article-list',
+  name: "article-list",
   components: {ArticleCard},
-  props:{ articles:Array}
+  props: {articles: Array}
 }
 </script>
 

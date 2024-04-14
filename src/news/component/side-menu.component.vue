@@ -1,9 +1,9 @@
 <script>
-import {NewsApiService} from "../model/services/news-api.service.js";
+import {NewsApiService} from "../services/news-api.service.js";
 
 export default {
   name: "side-menu",
-  props: {visible: Boolean},
+  props: { visible: Boolean },
   data() {
     return {
       sources: [],
@@ -11,22 +11,19 @@ export default {
       newsApi: new NewsApiService()
     }
   },
-  created(){
+  created() {
     this.newsApi.getSources()
-      .then(response => {
-        this.sources = response.data.sources;
-        this.sources.forEach(source => source.urlToLogo = this.newsApi.getUrlToLogo(source));
-        console.log(`data: ${response.data.sources}`);
-        })
-      .catch(error => {
-        this.errors.push(error);
-      });
+        .then(response => {
+          this.sources = response.data.sources;
+          this.sources.forEach(source => source.urlToLogo = this.newsApi.getUrlToLogo(source));
+          console.log(`data: ${response.data.sources}`);
+        }).catch(e => this.errors.push(e));
   },
   methods: {
-    onSourceSelected(source){
+    onSourceSelected(source) {
       this.$emit('source-selected', source);
     },
-    isAvailable(){
+    isAvailable() {
       return this.isAvailable();
     }
   }
@@ -34,17 +31,16 @@ export default {
 </script>
 
 <template>
- <pv-sidebar v-bind:visible="visible">
-    <div slot="header">
-      <h4>News sources</h4>
+  <pv-sidebar v-bind:visible="visible">
+    <div v-for="source in sources" class="m-4" @click="onSourceSelected(source)">
+      <div class="flex align-content-start flex-wrap">
+        <span class="flex align-items-center justify-content-center mr-2">
+          <pv-avatar :aria-label="source.name" :image="source.urlToLogo" shape="circle"/>
+        </span>
+        <span class="flex align-items-center justify-content-center">
+          {{ source.name }}
+        </span>
+      </div>
     </div>
-    <div slot="content">
-      <ul class="list-group">
-        <li class="list-group-item" v-for="source in sources" v-on:click="onSourceSelected(source)">
-          <img v-bind:src="source.urlToLogo" alt="logo" class="logo">
-          <span>{{ source.name }}</span>
-        </li>
-      </ul>
-    </div>
- </pv-sidebar>
+  </pv-sidebar>
 </template>
