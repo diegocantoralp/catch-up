@@ -12,7 +12,7 @@ export default {
       </div>
       <div class="align-items-center">
         <p>
-          Developed by Fernando Quispe U20221C628
+          Developed by Diego Cantoral U20201F568
         </p>
       </div>
     </div>
