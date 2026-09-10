@@ -77,3 +77,22 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Global table styles */
+table {
+  background-color: #000;
+  color: #fff;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  background-color: #000;
+  color: inherit;
+  border: 1px solid #333;
+  padding: 0.5rem;
+}
+
+table thead th {
+  color: #fff;
+}
