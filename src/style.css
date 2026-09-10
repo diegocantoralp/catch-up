@@ -77,3 +77,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Footer styles */
+#app .bg-indigo-500 {
+  background-color: red;
+  color: #ffffff;
+}
